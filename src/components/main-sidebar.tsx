@@ -42,21 +42,24 @@ export function MainSidebar() {
       </div>
       <div className="flex-1 overflow-y-auto">
         <SidebarMenu className="p-2">
-          {links.map((link) => (
-            <SidebarMenuItem key={link.href}>
-              <SidebarMenuButton
-                asChild
-                isActive={pathname === link.href || (link.href !== "/dashboard" && pathname.startsWith(link.href))}
-                className="w-full"
-                tooltip={link.label}
-              >
-                <Link href={link.href}>
-                  <link.icon className="h-5 w-5" />
-                  <span className="truncate">{link.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          {links.map((link) => {
+            const Icon = link.icon;
+            return (
+              <SidebarMenuItem key={link.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === link.href || (link.href !== "/dashboard" && pathname.startsWith(link.href))}
+                  className="w-full"
+                  tooltip={link.label}
+                >
+                  <Link href={link.href}>
+                    <Icon className="h-5 w-5" />
+                    <span className="truncate">{link.label}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </div>
     </div>
