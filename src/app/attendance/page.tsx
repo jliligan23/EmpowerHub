@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { Camera, Clock, Video } from "lucide-react";
+import { Camera, Clock, RefreshCcw, Video } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 const myLogs = [
@@ -17,7 +17,9 @@ const myLogs = [
 
 export default function MyAttendancePage() {
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -45,6 +47,35 @@ export default function MyAttendancePage() {
     getCameraPermission();
   }, [toast]);
 
+  const handleCapture = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL('image/png');
+        setCapturedImage(dataUrl);
+      }
+    }
+  };
+
+  const handleRetake = () => {
+    setCapturedImage(null);
+  };
+
+  const handleTimeIn = () => {
+    // In a real app, you'd send the capturedImage data to a server
+    toast({
+      title: "Clocked In Successfully!",
+      description: `Your time-in at ${new Date().toLocaleTimeString()} has been recorded.`,
+    });
+    setCapturedImage(null); // Reset after successful time-in
+  };
+
+
   return (
     <div className="space-y-6">
       <div>
@@ -60,24 +91,37 @@ export default function MyAttendancePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="relative aspect-video w-full overflow-hidden rounded-md border bg-muted">
+              {capturedImage ? (
+                <img src={capturedImage} alt="Captured selfie" className="h-full w-full object-cover" />
+              ) : (
                 <video ref={videoRef} className="h-full w-full object-cover" autoPlay muted playsInline />
-                {hasCameraPermission === false && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                        <Video className="h-12 w-12 text-muted-foreground" />
-                        <p className="mt-2 text-sm text-muted-foreground">Camera access is required. Please allow permission in your browser.</p>
-                    </div>
-                )}
+              )}
+              {hasCameraPermission === false && !capturedImage && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                  <Video className="h-12 w-12 text-muted-foreground" />
+                  <p className="mt-2 text-sm text-muted-foreground">Camera access is required. Please allow permission in your browser.</p>
+                </div>
+              )}
             </div>
+            <canvas ref={canvasRef} className="hidden" />
+
             {hasCameraPermission === false && (
                 <Alert variant="destructive">
                     <AlertTitle>Camera Access Required</AlertTitle>
                     <AlertDescription>Please allow camera access to use this feature.</AlertDescription>
                 </Alert>
             )}
-            <div className="grid grid-cols-2 gap-2">
-                <Button disabled={!hasCameraPermission}><Clock className="mr-2 h-4 w-4" /> Time In</Button>
-                <Button disabled={!hasCameraPermission} variant="outline"><Camera className="mr-2 h-4 w-4" /> Capture</Button>
-            </div>
+
+            {capturedImage ? (
+              <div className="grid grid-cols-2 gap-2">
+                <Button onClick={handleTimeIn}><Clock className="mr-2 h-4 w-4" /> Time In</Button>
+                <Button onClick={handleRetake} variant="outline"><RefreshCcw className="mr-2 h-4 w-4" /> Retake</Button>
+              </div>
+            ) : (
+              <Button disabled={!hasCameraPermission} onClick={handleCapture} className="w-full">
+                <Camera className="mr-2 h-4 w-4" /> Capture
+              </Button>
+            )}
           </CardContent>
         </Card>
 
