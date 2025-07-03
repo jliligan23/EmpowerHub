@@ -1,15 +1,33 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building, LayoutDashboard, User, GanttChartSquare, Megaphone, BotMessageSquare, Settings } from "lucide-react";
+import { 
+  Building, 
+  LayoutDashboard, 
+  Users,
+  GanttChartSquare, 
+  Megaphone, 
+  BotMessageSquare, 
+  Settings,
+  ClipboardCheck,
+  Wallet,
+  CalendarClock,
+  BarChart3,
+  UserPlus
+} from "lucide-react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 
 const links = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/employees", label: "Employees", icon: User },
-  { href: "/leave", label: "Leave", icon: GanttChartSquare },
+  { href: "/employees", label: "Employee Management", icon: Users },
+  { href: "/attendance", label: "Attendance Management", icon: ClipboardCheck },
+  { href: "/leave", label: "Leave Management", icon: GanttChartSquare },
+  { href: "/payroll", label: "Payroll & Compensation", icon: Wallet },
+  { href: "/timesheet", label: "Timesheet & Schedule", icon: CalendarClock },
+  { href: "/reports", label: "Reports & Analytics", icon: BarChart3 },
+  { href: "/recruitment", label: "Recruitment / Onboarding", icon: UserPlus },
+  { href: "/requests", label: "Requests & Approvals", icon: BotMessageSquare },
   { href: "/announcements", label: "Announcements", icon: Megaphone },
-  { href: "/requests", label: "AI Requests", icon: BotMessageSquare },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
