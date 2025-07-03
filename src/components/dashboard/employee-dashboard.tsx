@@ -1,75 +1,78 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calendar, Clock, FileText, ArrowRight } from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Bar,
+  BarChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { Clock, ListChecks, Calendar } from "lucide-react";
+
+const data = [
+  { name: "Mon", hours: 8 },
+  { name: "Tue", hours: 7.5 },
+  { name: "Wed", hours: 9 },
+  { name: "Thu", hours: 8 },
+  { name: "Fri", hours: 7 },
+];
 
 export default function EmployeeDashboard() {
   return (
-    <div className="grid gap-6">
-       <Card className="bg-gradient-to-r from-primary to-accent text-primary-foreground border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle className="font-headline text-2xl">Welcome back, Alex!</CardTitle>
-          <CardDescription className="text-primary-foreground/80">You're doing great. Keep up the good work!</CardDescription>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Hours Worked</CardTitle>
+          <Clock className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">39.5 hrs</div>
+          <p className="text-xs text-muted-foreground">This week</p>
+        </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-muted-foreground" />
-              Attendance Today
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">8h 15m</div>
-            <p className="text-sm text-muted-foreground">Clocked in at 8:58 AM</p>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full" asChild>
-              <Link href="/attendance">Time In / Out</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Tasks Completed</CardTitle>
+          <ListChecks className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">18</div>
+          <p className="text-xs text-muted-foreground">+12% from last week</p>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="h-5 w-5 text-muted-foreground" />
-              Upcoming Schedule
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-             <p className="font-semibold">Vacation Leave</p>
-             <p className="text-sm text-muted-foreground">July 25, 2024 - July 30, 2024</p>
-          </CardContent>
-          <CardFooter>
-             <Button variant="outline" className="w-full" asChild>
-               <Link href="/timesheet">View My Schedule</Link>
-             </Button>
-          </CardFooter>
-        </Card>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Next Shift</CardTitle>
+          <Calendar className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">July 5, 2025</div>
+          <p className="text-xs text-muted-foreground">9:00 AM – 6:00 PM</p>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-muted-foreground" />
-              Payslip Summary
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">Latest Payslip: June 2024</p>
-            <p className="text-2xl font-bold">Ready to View</p>
-          </CardContent>
-           <CardFooter>
-             <Button variant="secondary" className="w-full" asChild>
-                <Link href="/payslips">
-                  View Payslips <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-             </Button>
-          </CardFooter>
-        </Card>
-      </div>
+      <Card className="col-span-3">
+        <CardHeader>
+          <CardTitle>Weekly Hours</CardTitle>
+        </CardHeader>
+        <CardContent className="pl-2">
+          <ResponsiveContainer width="100%" height={350}>
+            <BarChart data={data}>
+              <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} unit="h" />
+              <Bar dataKey="hours" fill="#10b981" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </div>
   );
 }
