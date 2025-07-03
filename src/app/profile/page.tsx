@@ -83,11 +83,11 @@ export default function ProfilePage() {
                 <CardDescription>View and manage your uploaded documents.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-                {documents.map((doc, i) => (
+                {documents.map(({ name, icon: Icon }, i) => (
                     <div key={i} className="flex items-center justify-between rounded-md border p-3">
                         <div className="flex items-center gap-3">
-                            <doc.icon className="h-5 w-5 text-muted-foreground" />
-                            <span className="text-sm font-medium">{doc.name}</span>
+                            <Icon className="h-5 w-5 text-muted-foreground" />
+                            <span className="text-sm font-medium">{name}</span>
                         </div>
                         <Button variant="outline" size="sm">Download</Button>
                     </div>
