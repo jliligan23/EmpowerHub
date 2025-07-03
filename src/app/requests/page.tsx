@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { submitRequest } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Bot, Loader2 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useActionState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const initialState = {
@@ -28,7 +28,7 @@ function SubmitButton() {
 }
 
 export default function RequestAnalyzerPage() {
-  const [state, formAction] = useFormState(submitRequest, initialState);
+  const [state, formAction] = useActionState(submitRequest, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
