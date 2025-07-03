@@ -79,7 +79,7 @@ const leaveRequests = [
 ];
 
 const summaryCards = [
-    { title: "Annual Leave Balance", value: "12 Days", icon: CalendarDays },
+    { title: "Annual Leave Balance", value: "15 Days", icon: CalendarDays },
     { title: "Sick Leave Balance", value: "8 Days", icon: CalendarDays },
     { title: "Pending Requests", value: "2", icon: ClipboardCheck },
 ];
