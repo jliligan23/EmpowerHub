@@ -2,32 +2,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
-  Building, 
   LayoutDashboard, 
-  Users,
+  User,
   GanttChartSquare, 
   Megaphone, 
-  BotMessageSquare, 
   Settings,
   ClipboardCheck,
   Wallet,
   CalendarClock,
-  BarChart3,
-  UserPlus
+  FileQuestion,
+  LifeBuoy,
+  Building
 } from "lucide-react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 
 const links = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/employees", label: "Employee Management", icon: Users },
-  { href: "/attendance", label: "Attendance Management", icon: ClipboardCheck },
-  { href: "/leave", label: "Leave Management", icon: GanttChartSquare },
-  { href: "/payroll", label: "Payroll & Compensation", icon: Wallet },
-  { href: "/timesheet", label: "Timesheet & Schedule", icon: CalendarClock },
-  { href: "/reports", label: "Reports & Analytics", icon: BarChart3 },
-  { href: "/recruitment", label: "Recruitment / Onboarding", icon: UserPlus },
-  { href: "/requests", label: "Requests & Approvals", icon: BotMessageSquare },
+  { href: "/profile", label: "My Profile", icon: User },
+  { href: "/attendance", label: "Attendance", icon: ClipboardCheck },
+  { href: "/leave", label: "Leave", icon: GanttChartSquare },
+  { href: "/payslips", label: "Payslips", icon: Wallet },
+  { href: "/timesheet", label: "My Schedule", icon: CalendarClock },
+  { href: "/requests", label: "My Requests", icon: FileQuestion },
   { href: "/announcements", label: "Announcements", icon: Megaphone },
+  { href: "/support", label: "Support & Helpdesk", icon: LifeBuoy },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 

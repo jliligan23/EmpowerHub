@@ -1,9 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import { Bell, Mail, MessageSquare, PlusCircle } from "lucide-react";
 
 const announcements = [
   {
@@ -24,85 +20,47 @@ const announcements = [
     content: "Let's give a warm welcome to our new team members starting this week: Alice (Engineering) and Bob (Marketing).",
     date: "2024-07-25",
   },
+  {
+    id: "ANNC004",
+    title: "August Birthday Celebrants",
+    content: "Happy birthday to all our August celebrants! We'll have a small celebration at the pantry this Friday afternoon.",
+    date: "2024-07-24",
+  },
 ];
 
 
 export default function AnnouncementsPage() {
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="font-headline text-3xl font-bold tracking-tight">
-            Notifications & Announcements
-          </h1>
-          <p className="text-muted-foreground">
-            Manage company-wide news, events, and notification preferences.
-          </p>
-        </div>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Post Announcement
-        </Button>
+      <div>
+        <h1 className="font-headline text-3xl font-bold tracking-tight">
+          Announcements
+        </h1>
+        <p className="text-muted-foreground">
+          Stay updated with the latest company news, events, and policy updates.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="space-y-6 lg:col-span-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Announcements</CardTitle>
-              <CardDescription>
-                Latest company news and event reminders.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-6">
-                {announcements.map((item, index) => (
-                  <li key={item.id}>
-                    <h3 className="font-semibold">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.date}</p>
-                    <p className="mt-2 text-sm">{item.content}</p>
-                    {index < announcements.length - 1 && <Separator className="mt-6" />}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div>
-          <Card>
-            <CardHeader>
-              <CardTitle>Notification Settings</CardTitle>
-              <CardDescription>
-                Choose how you receive notifications.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="email-notifications" className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  <span>Email Notifications</span>
-                </Label>
-                <Switch id="email-notifications" defaultChecked />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="sms-notifications" className="flex items-center gap-2">
-                  <MessageSquare className="h-4 w-4" />
-                  <span>SMS Alerts</span>
-                </Label>
-                <Switch id="sms-notifications" />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="push-notifications" className="flex items-center gap-2">
-                  <Bell className="h-4 w-4" />
-                  <span>Push Notifications</span>
-                </Label>
-                <Switch id="push-notifications" defaultChecked />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Announcements</CardTitle>
+          <CardDescription>
+            Latest company news and event reminders.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-6">
+            {announcements.map((item, index) => (
+              <li key={item.id}>
+                <h3 className="font-semibold">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.date}</p>
+                <p className="mt-2 text-sm">{item.content}</p>
+                {index < announcements.length - 1 && <Separator className="mt-6" />}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -59,7 +59,7 @@ export default function TimesheetPage() {
             <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                     <h1 className="font-headline text-3xl font-bold tracking-tight">
-                        Timesheet & Schedule
+                        My Schedule
                     </h1>
                     <p className="text-muted-foreground">
                         Manage your work schedule, request overtime, and log remote work.
@@ -81,7 +81,7 @@ export default function TimesheetPage() {
                 <div className="lg:col-span-2">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Shift Calendar</CardTitle>
+                            <CardTitle>My Shift Calendar</CardTitle>
                             <CardDescription>
                                 Your work schedule for the month. Click on a date to view details.
                             </CardDescription>
@@ -100,7 +100,7 @@ export default function TimesheetPage() {
                 <div className="space-y-6">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Recent Overtime Requests</CardTitle>
+                            <CardTitle>My Overtime Requests</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <Table>
@@ -136,7 +136,7 @@ export default function TimesheetPage() {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle>Work-from-Home Logs</CardTitle>
+                            <CardTitle>My Work-from-Home Logs</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <Table>

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, FileText, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function EmployeeDashboard() {
   return (
@@ -25,7 +26,9 @@ export default function EmployeeDashboard() {
             <p className="text-sm text-muted-foreground">Clocked in at 8:58 AM</p>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Time In / Out</Button>
+            <Button className="w-full" asChild>
+              <Link href="/attendance">Time In / Out</Link>
+            </Button>
           </CardFooter>
         </Card>
 
@@ -41,7 +44,9 @@ export default function EmployeeDashboard() {
              <p className="text-sm text-muted-foreground">July 25, 2024 - July 30, 2024</p>
           </CardContent>
           <CardFooter>
-             <Button variant="outline" className="w-full">View My Schedule</Button>
+             <Button variant="outline" className="w-full" asChild>
+               <Link href="/timesheet">View My Schedule</Link>
+             </Button>
           </CardFooter>
         </Card>
 
@@ -57,8 +62,10 @@ export default function EmployeeDashboard() {
             <p className="text-2xl font-bold">Ready to View</p>
           </CardContent>
            <CardFooter>
-             <Button variant="secondary" className="w-full">
-                View Payslips <ArrowRight className="ml-2 h-4 w-4" />
+             <Button variant="secondary" className="w-full" asChild>
+                <Link href="/payslips">
+                  View Payslips <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
              </Button>
           </CardFooter>
         </Card>
