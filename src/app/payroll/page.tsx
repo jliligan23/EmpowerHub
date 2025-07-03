@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -37,32 +38,32 @@ const payrollHistory = [
     id: "PAY-JUL24",
     payPeriod: "July 1 - 31, 2024",
     runDate: "2024-08-05",
-    totalCost: "$150,000.00",
-    employees: 1250,
+    totalCost: "₱3,125,000.00",
+    employees: 125,
     status: "Completed",
   },
   {
     id: "PAY-JUN24",
     payPeriod: "June 1 - 30, 2024",
     runDate: "2024-07-05",
-    totalCost: "$148,500.00",
-    employees: 1245,
+    totalCost: "₱3,112,500.00",
+    employees: 124,
     status: "Completed",
   },
   {
     id: "PAY-MAY24",
     payPeriod: "May 1 - 31, 2024",
     runDate: "2024-06-05",
-    totalCost: "$149,200.00",
-    employees: 1240,
+    totalCost: "₱3,100,000.00",
+    employees: 124,
     status: "Completed",
   },
 ];
 
 const summaryCards = [
-  { title: "This Month's Payroll", value: "$150,000", icon: DollarSign },
-  { title: "Total Deductions", value: "$12,500", icon: FileMinus },
-  { title: "Total Bonuses", value: "$5,000", icon: Gift },
+  { title: "This Month's Payroll", value: "₱3.12M", icon: DollarSign },
+  { title: "Total Deductions", value: "₱260K", icon: FileMinus },
+  { title: "Total Bonuses", value: "₱100K", icon: Gift },
   { title: "Next Payroll Date", value: "Aug 31, 2024", icon: CalendarCheck },
 ];
 
@@ -70,23 +71,23 @@ const employeeContributions = [
     {
       id: "EMP001",
       name: "John Doe",
-      sss: "$112.50",
-      philhealth: "$75.00",
-      pagibig: "$10.00",
+      sss: "₱720.00",
+      philhealth: "₱400.00",
+      pagibig: "₱100.00",
     },
     {
       id: "EMP002",
       name: "Jane Smith",
-      sss: "$112.50",
-      philhealth: "$97.50",
-      pagibig: "$10.00",
+      sss: "₱720.00",
+      philhealth: "₱400.00",
+      pagibig: "₱100.00",
     },
     {
       id: "EMP004",
       name: "Mary Johnson",
-      sss: "$112.50",
-      philhealth: "$120.00",
-      pagibig: "$10.00",
+      sss: "₱720.00",
+      philhealth: "₱400.00",
+      pagibig: "₱100.00",
     },
 ];
 
@@ -201,8 +202,8 @@ export default function PayrollPage() {
                 <TableRow>
                   <TableHead>Employee</TableHead>
                   <TableHead>SSS</TableHead>
-                  <TableHead>PHIC</TableHead>
-                  <TableHead>HDMF</TableHead>
+                  <TableHead>PhilHealth</TableHead>
+                  <TableHead>Pag-IBIG</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
