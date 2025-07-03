@@ -3,33 +3,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, 
-  User,
-  GanttChartSquare, 
-  Megaphone, 
-  Settings,
-  ClipboardCheck,
+  Users,
+  Briefcase,
   Wallet,
-  CalendarClock,
-  FileQuestion,
-  LifeBuoy,
+  BarChart3,
+  Settings,
   Building
 } from "lucide-react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/profile", label: "My Profile", icon: User },
-  { href: "/attendance", label: "Attendance", icon: ClipboardCheck },
-  { href: "/leave", label: "Leave", icon: GanttChartSquare },
-  { href: "/payslips", label: "Payslips", icon: Wallet },
-  { href: "/timesheet", label: "My Schedule", icon: CalendarClock },
-  { href: "/requests", label: "My Requests", icon: FileQuestion },
-  { href: "/announcements", label: "Announcements", icon: Megaphone },
-  { href: "/support", label: "Support & Helpdesk", icon: LifeBuoy },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/employees", label: "Employees", icon: Users },
+  { href: "/admin/recruitment", label: "Recruitment", icon: Briefcase },
+  { href: "/admin/payroll", label: "Payroll", icon: Wallet },
+  { href: "/admin/reports", label: "Reports", icon: BarChart3 },
+  { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-export function MainSidebar() {
+export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
@@ -38,6 +30,7 @@ export function MainSidebar() {
         <Building className="h-8 w-8 text-primary" />
         <div className="group-data-[collapsible=icon]:hidden">
           <span className="font-headline text-xl font-semibold">EmpowerHub</span>
+          <span className="text-xs text-muted-foreground ml-2">Admin</span>
         </div>
       </div>
       <div className="flex-1 overflow-y-auto">
@@ -46,7 +39,7 @@ export function MainSidebar() {
             <SidebarMenuItem key={link.href}>
               <SidebarMenuButton
                 asChild
-                isActive={pathname === link.href || (link.href !== "/dashboard" && pathname.startsWith(link.href))}
+                isActive={pathname === link.href || (link.href !== "/admin/dashboard" && pathname.startsWith(link.href))}
                 className="w-full"
                 tooltip={link.label}
               >
