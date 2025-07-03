@@ -28,16 +28,17 @@ export function MainSidebar() {
         <SidebarMenu className="p-2">
           {links.map((link) => (
             <SidebarMenuItem key={link.href}>
-              <Link href={link.href} passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))}
-                  className="w-full"
-                  tooltip={link.label}
-                >
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))}
+                className="w-full"
+                tooltip={link.label}
+              >
+                <Link href={link.href}>
                   <link.icon className="h-5 w-5" />
                   <span className="truncate">{link.label}</span>
-                </SidebarMenuButton>
-              </Link>
+                </Link>
+              </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
