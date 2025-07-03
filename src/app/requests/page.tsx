@@ -51,7 +51,7 @@ export default function RequestAnalyzerPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <Card as="form" action={formAction} className="flex flex-col">
+        <form action={formAction} className="flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm">
           <CardHeader>
             <CardTitle>New Request</CardTitle>
             <CardDescription>Enter the full text of the employee's request below.</CardDescription>
@@ -72,7 +72,7 @@ export default function RequestAnalyzerPage() {
           <CardFooter>
             <SubmitButton />
           </CardFooter>
-        </Card>
+        </form>
 
         <div className="flex flex-col space-y-4">
            <h2 className="font-headline text-xl font-semibold">Analysis Result</h2>
